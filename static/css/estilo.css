@@ -1,0 +1,261 @@
+/* Reset e Variáveis */
+:root {
+  --primary: #4a6fa5;
+  --primary-dark: #3a5a8a;
+  --secondary: #6d9dc5;
+  --danger: #e63946;
+  --warning: #ffbe0b;
+  --success: #2a9d8f;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --gray: #6c757d;
+  --light-gray: #e9ecef;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background: white;
+  color: rgb(45, 182, 45);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: rgb(109, 107, 107);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+nav a:hover {
+  opacity: 0.9;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+button {
+  background-color: rgb(35, 119, 230);
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-left: 1.5rem;
+
+}
+
+button:hover {
+  background-color: rgb(25, 83, 158);
+  transform: translateY(-2px);
+}
+
+/* Main Content */
+main {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+main h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: rgb(109, 107, 107);
+}
+
+main > p {
+  color: var(--gray);
+  margin-bottom: 2rem;
+}
+
+/* Alert Section */
+section > div[style*="background-color: #fff3cd"] {
+  background-color: #fffc54cc !important;
+  color: var(--dark);
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  padding: 16px; margin-top: 16px;
+  border-left: 4px solid #fdbf13;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+section > div[style*="background-color: #fff3cd"] strong {
+  font-weight: 600;
+  color: var(--danger);
+}
+
+/* Stats Cards */
+section:has(> div > h3:first-child) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+section:has(> div > h3:first-child) > div {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+section:has(> div > h3:first-child) > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+section:has(> div > h3:first-child) h3 {
+  font-size: 1rem;
+  color: var(--gray);
+  margin-bottom: 0.5rem;
+}
+
+section:has(> div > h3:first-child) p {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.3rem;
+}
+
+section:has(> div > h3:first-child) small {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* Stock Sections */
+section[style*="display: flex"] {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 2rem !important;
+  margin-bottom: 2rem;
+}
+
+section[style*="display: flex"] > div {
+  flex: 1 !important;
+  min-width: 300px;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+section[style*="display: flex"] h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+section[style*="display: flex"] p {
+  margin-bottom: 1rem;
+  color: var(--gray);
+}
+
+/* Alert Items */
+section[style*="display: flex"] > div:nth-child(2) > div {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  background-color: #fff8f8;
+  border-left: 4px solid var(--danger);
+}
+
+section[style*="display: flex"] > div:nth-child(2) h4 {
+  color: var(--danger);
+  margin-bottom: 0.3rem;
+}
+
+section[style*="display: flex"] > div:nth-child(2) p {
+  color: var(--dark);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+section[style*="display: flex"] > div:nth-child(2) span {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+section[style*="display: flex"] > div:nth-child(2) span:first-of-type {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+section[style*="display: flex"] > div:nth-child(2) span:last-of-type {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  button {
+    margin: 1rem 0 0 0;
+  }
+
+  section[style*="display: flex"] {
+    flex-direction: column;
+  }
+}

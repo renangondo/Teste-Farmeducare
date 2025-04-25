@@ -1,0 +1,98 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>FarmMedTrack - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}" />
+</head>
+
+<body>
+    <!-- Topo -->
+    <header>
+        <h1>FarmMedTrack</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Estoque</a></li>
+                <li><a href="#">Uso</a></li>
+                <li><a href="#">Relatórios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div>
+            <h2>Dashboard</h2>
+            <p>Visão geral do seu estoque de medicamentos.</p>
+            </div>
+            <div>
+            <button>+ Adicionar Medicamento</button>
+            </div>
+        </div>
+
+        <!-- Alerta de Estoque Baixo -->
+        <section>
+            <div style="background-color: #fff3cd; border: 1px solid #ffeeba;">
+                <strong>Alerta de estoque baixo</strong>
+                <span>Você tem 2 medicamentos com estoque abaixo do nível recomendado.</span>
+            </div>
+        </section>
+
+        <!-- Cards de Informações -->
+        <section>
+            <div>
+                <h3>Total de Medicamentos</h3>
+                <p>23</p>
+                <small>Unidades em estoque</small>
+            </div>
+            <div>
+                <h3>Valor em Estoque</h3>
+                <p>R$ 1.514,25</p>
+                <small>Investimento total</small>
+            </div>
+            <div>
+                <h3>Estoque Baixo</h3>
+                <p>2</p>
+                <small>Medicamentos para repor</small>
+            </div>
+            <div>
+                <h3>Próximos ao Vencimento</h3>
+                <p>0</p>
+                <small>Nos próximos 30 dias</small>
+            </div>
+        </section>
+
+        <!-- Estoque Atual e Alertas -->
+        <section style="display: flex; gap: 32px;">
+            <div style="flex: 1;">
+                <h3>Estoque Atual</h3>
+                <p>Visão geral da disponibilidade de medicamentos</p>
+            </div>
+            <div style="flex: 1;">
+                <h3>Medicamentos com Alerta</h3>
+                <div>
+                    <h4>Oxitetraciclina</h4>
+                    <p>2 frascos</p>
+                    <span>Estoque baixo</span>
+                    <span>Vencido</span>
+                    <p>14/09/2024</p>
+                </div>
+                <div>
+                    <h4>Doramectina</h4>
+                    <p>1 frasco</p>
+                    <span>Estoque baixo</span>
+                    <span>Vencido</span>
+                    <p>04/07/2024</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Excluir Registros</title>
+{% endblock %}
+
+
+{% block conteudo %}
+<main class="main-content">
+    <header class="content-header">
+        <h1>Cadastro Receita</h1>
+        <div class="header-actions">
+            <div class="search-box">
+                <input type="text" placeholder="Pesquisar...">
+                <i class="fas fa-search"></i>
+            </div>
+            <button class="btn btn-notification">
+                <i class="fas fa-bell"></i>
+                <span class="badge">3</span>
+            </button>
+        </div>
+    </header>
+    {% endblock %}
+
+
+    {% block cards %}
+
+    {% endblock %}
+
+    {% block graficos %}
+    <div class="receita-container">
+        <div class="receita-header">
+            <div>
+                <h1 class="receita-title">Exclusão de Registros</h1>
+                <p class="receita-subtitle"><b>Tem certeza que deseja excluir o registro: </b></p><br>
+                <p>{{ object }}</p>
+            </div>
+        </div>
+
+        <form class="receita-form" action="" method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p}}
+            <!-- Rodapé do Formulário -->
+            <div class="receita-actions">
+                <button type="button" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" class="btn btn-danger">Excluir</button>
+            </div>
+
+
+        </form>
+    </div>
+    {% endblock %}
+
+    {% block ultimos_registros %}
+
+    {% endblock %}

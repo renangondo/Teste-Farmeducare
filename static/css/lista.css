@@ -1,0 +1,157 @@
+/* Container principal */
+.receita-lista-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+/* Cabeçalho da lista */
+.lista-header {
+  margin-bottom: 25px;
+}
+
+/* Container da tabela */
+.table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos da tabela */
+.receita-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+.receita-table th {
+  background-color: #4a8f29;
+  color: white;
+  padding: 16px 20px;
+  text-align: left;
+  font-weight: 500;
+  border: none;
+}
+
+.receita-table th:first-child {
+  border-top-left-radius: 7px;
+}
+
+.receita-table th:last-child {
+  border-top-right-radius: 7px;
+}
+
+.receita-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+  background-color: white;
+}
+
+.receita-table tr:last-child td {
+  border-bottom: none;
+}
+
+.receita-table tr:hover td {
+  background-color: #f8faf5;
+}
+
+/* Botões de ação */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-size: 13px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-edit {
+  background-color: #6d9dc5;
+  color: white;
+}
+
+.btn-delete {
+  background-color: #e63946;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #5a8bb4;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-delete:hover {
+  background-color: #d62c3a;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Botão Nova Receita */
+.btn-primary {
+  background-color: #4a8f29;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #3a7320;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mensagem de lista vazia */
+.receita-table tr td[colspan] {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+  font-size: 15px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .receita-lista-container {
+    padding: 15px;
+  }
+
+  .receita-table th,
+  .receita-table td {
+    padding: 12px 15px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    padding: 6px 10px;
+    font-size: 12px;
+    justify-content: center;
+  }
+}

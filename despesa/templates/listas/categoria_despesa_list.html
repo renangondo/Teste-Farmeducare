@@ -1,0 +1,84 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Categoria da Despesa</title>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/lista.css' %}">
+{% endblock %}
+
+
+{% block conteudo %}
+<main class="main-content">
+    <header class="content-header">
+        <h1>Lista de Categoria da Despesa</h1>
+        <div class="header-actions">
+            <div class="search-box">
+                <input type="text" placeholder="Pesquisar...">
+                <i class="fas fa-search"></i>
+            </div>
+            <button class="btn btn-notification">
+                <i class="fas fa-bell"></i>
+                <span class="badge">3</span>
+            </button>
+        </div>
+    </header>
+    {% endblock %}
+
+
+    {% block cards %}
+
+    {% endblock %}
+
+    {% block graficos %}
+    <div class="receita-lista-container">
+        <div class="lista-header">
+            <div class="search-and-actions">
+                <a href="{% url 'cadastrar-categoria-despesa' %}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Nova Categoria
+                </a>
+            </div>
+        </div>
+        <br>
+
+        <div class="table-container">
+            <table class="receita-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for categoriadespesa in object_list %}
+                    <tr>
+                        <td>{{ categoriadespesa.pk }}</td>
+                        <td>{{ categoriadespesa.nome}}</td>
+                        <td class="actions">
+                            <a href="{% url 'editar-categoria-despesa' categoriadespesa.pk %}" class="btn-edit">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a href="{% url 'excluir-categoria-despesa' categoriadespesa.pk %}" class="btn-delete"
+                                onclick="return confirm('Tem certeza?')">
+                                <i class="fas fa-trash"></i> Excluir
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="8">Nenhuma Categoria Registrada.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block ultimos_registros %}
+
+    {% endblock %}

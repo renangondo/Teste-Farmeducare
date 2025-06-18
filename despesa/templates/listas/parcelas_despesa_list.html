@@ -1,0 +1,89 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Parcelas da Despesa</title>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/lista.css' %}">
+{% endblock %}
+
+
+{% block conteudo %}
+<main class="main-content">
+    <header class="content-header">
+        <h1>Lista de Parcelas de Despesa</h1>
+        <div class="header-actions">
+            <div class="search-box">
+                <input type="text" placeholder="Pesquisar...">
+                <i class="fas fa-search"></i>
+            </div>
+            <button class="btn btn-notification">
+                <i class="fas fa-bell"></i>
+                <span class="badge">3</span>
+            </button>
+        </div>
+    </header>
+    {% endblock %}
+
+
+    {% block cards %}
+
+    {% endblock %}
+
+    {% block graficos %}
+    <div class="receita-lista-container">
+        <div class="lista-header">
+            <div class="search-and-actions">
+                <a href="{% url 'cadastrar-parcela-despesa' %}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Nova Parcela
+                </a>
+            </div>
+        </div>
+        <br>
+
+        <div class="table-container">
+            <table class="receita-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Despesa</th>
+                        <th>Ordem da Parcela</th>
+                        <th>Valor da Parcela</th>
+                        <th>Data de Vencimento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for parceladespesa in object_list %}
+                    <tr>
+                        <td>{{ parceladespesa.pk }}</td>
+                        <td>{{ parceladespesa.receita }}</td>
+                        <td>{{ parceladespesa.ordem_parcela }}</td>
+                        <td>{{ parceladespesa.valor_parcela }}</td>
+                        <td>{{ parceladespesa.data_vencimento}}</td>
+                        <td class="actions">
+                            <a href="{% url 'editar-despesa-parcelas' parceladespesa.pk %}" class="btn-edit">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a href="{% url 'excluir-despesa-parcelas' parceladespesa.pk %}" class="btn-delete"
+                                onclick="return confirm('Tem certeza?')">
+                                <i class="fas fa-trash"></i> Excluir
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="8">Nenhuma Parcela Registrada.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block ultimos_registros %}
+
+    {% endblock %}

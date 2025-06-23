@@ -6,10 +6,6 @@
 <title>Receita</title>
 {% endblock %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/lista.css' %}">
-{% endblock %}
-
 
 {% block conteudo %}
 <main class="main-content">
@@ -67,7 +63,7 @@
                             <td>{{ receita.fazenda_destino }}</td>
                             <td>{{ receita.categoria }}</td>
                             <td>R$ {{ receita.valor_total|floatformat:2 }}</td>
-                            <td>{{ receita.cadastradoPor }}</td>
+                            <td>{{ receita.cadastrado_por }}</td>
                             <td class="actions">
                                 <a href="{% url 'editar-receita' receita.pk %}" class="btn-edit">
                                     <i class="fas fa-edit"></i> Editar

@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/receita.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lista.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
@@ -21,7 +22,7 @@
     {% block menu %}
     <aside class="sidebar">
         <div class="sidebar-header">
-            <h2><i class="fas fa-tractor"></i> Fazenda, </h2>
+            <h2><i class="fas fa-tractor"></i> Fazenda, Domiciano </h2>
             <p>Sistema de Gestão Agrícola</p>
         </div>
 
@@ -40,7 +41,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="despesas.html">
+                    <a href="{% url 'listar-despesa' %}">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <span>Despesas</span>
                     </a>

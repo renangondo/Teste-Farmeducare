@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'paginas.apps.PaginasConfig',
     'receita.apps.ReceitaConfig',
+    'despesa.apps.DespesaConfig',
 ]
 
 MIDDLEWARE = [

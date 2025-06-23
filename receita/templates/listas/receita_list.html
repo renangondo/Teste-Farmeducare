@@ -10,6 +10,9 @@
 {% block conteudo %}
 <main class="main-content">
     <header class="content-header">
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
         <h1>Lista de Receitas</h1>
         <div class="header-actions">
             <div class="search-box">
@@ -40,47 +43,47 @@
         </div>
         <br>
 
-            <div class="table-container">
-                <table class="receita-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Data da Receita</th>
-                            <th>Cliente</th>
-                            <th>Fazenda</th>
-                            <th>Categoria</th>
-                            <th>Valor Total</th>
-                            <th>Cadastrado Por</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for receita in object_list %}
-                        <tr>
-                            <td>{{ receita.pk }}</td>
-                            <td>{{ receita.data_receita|date:"d/m/Y" }}</td>
-                            <td>{{ receita.cliente_fornecedor }}</td>
-                            <td>{{ receita.fazenda_destino }}</td>
-                            <td>{{ receita.categoria }}</td>
-                            <td>R$ {{ receita.valor_total|floatformat:2 }}</td>
-                            <td>{{ receita.cadastrado_por }}</td>
-                            <td class="actions">
-                                <a href="{% url 'editar-receita' receita.pk %}" class="btn-edit">
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-                                <a href="{% url 'excluir-receita' receita.pk %}" class="btn-delete"
-                                    onclick="return confirm('Tem certeza?')">
-                                    <i class="fas fa-trash"></i> Excluir
-                                </a>
-                            </td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="8">Nenhuma Receita Registrada.</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+        <div class="table-container">
+            <table class="receita-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data da Receita</th>
+                        <th>Cliente</th>
+                        <th>Fazenda</th>
+                        <th>Categoria</th>
+                        <th>Valor Total</th>
+                        <th>Cadastrado Por</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for receita in object_list %}
+                    <tr>
+                        <td>{{ receita.pk }}</td>
+                        <td>{{ receita.data_receita|date:"d/m/Y" }}</td>
+                        <td>{{ receita.cliente_fornecedor }}</td>
+                        <td>{{ receita.fazenda_destino }}</td>
+                        <td>{{ receita.categoria }}</td>
+                        <td>R$ {{ receita.valor_total|floatformat:2 }}</td>
+                        <td>{{ receita.cadastrado_por }}</td>
+                        <td class="actions">
+                            <a href="{% url 'editar-receita' receita.pk %}" class="btn-edit">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a href="{% url 'excluir-receita' receita.pk %}" class="btn-delete"
+                                onclick="return confirm('Tem certeza?')">
+                                <i class="fas fa-trash"></i> Excluir
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="8">Nenhuma Receita Registrada.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
     {% endblock %}

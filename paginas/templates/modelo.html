@@ -5,21 +5,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     {% block titulo %}
     <title>Modelo</title>
     {% endblock %}
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsividade.css' %}">
     <link rel="stylesheet" href="{% static 'css/receita.css' %}">
     <link rel="stylesheet" href="{% static 'css/lista.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
+
     <!-- Sidebar/Menu Lateral -->
     {% block menu %}
+
+    <!-- Overlay para menu mobile -->
+    <div class="overlay"></div>
+
     <aside class="sidebar">
         <div class="sidebar-header">
             <h2><i class="fas fa-tractor"></i> Fazenda, Domiciano </h2>
@@ -49,7 +55,7 @@
                 <li class="menu-item">
                     <a href="medicamentos.html">
                         <i class="fas fa-pills"></i>
-                        <span>Medicamentos</i>
+                        <span>Medicamentos</span>
                     </a>
                 </li>
                 <li class="menu-item">
@@ -89,10 +95,12 @@
     {% endblock %}
 
     <!-- Conteúdo Principal -->
-
     {% block conteudo %}
     <main class="main-content">
         <header class="content-header">
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
             <h1>Dashboard</h1>
             <div class="header-actions">
                 <div class="search-box">
@@ -106,6 +114,7 @@
             </div>
         </header>
         {% endblock %}
+
         <!-- Cards Resumo -->
         {% block cards %}
         <section class="summary-cards">
@@ -245,8 +254,9 @@
             </div>
         </section>
     </main>
-    </div>
     {% endblock %}
+
+    <script src="{% static 'js/mobile.js' %}"></script>
 </body>
 
 </html>

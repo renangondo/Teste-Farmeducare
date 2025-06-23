@@ -1,0 +1,104 @@
+/* Estilos de responsividade adicionais */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  z-index: 1000;
+}
+
+@media (max-width: 992px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    width: 280px;
+    height: 100vh;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .sidebar-menu {
+    text-align: left;
+    padding-left: 15px;
+  }
+
+  .sidebar-menu .menu-item a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+  }
+
+  .sidebar-menu .menu-item span {
+    display: inline-block;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .charts-section {
+    grid-template-columns: 1fr;
+  }
+
+  .recent-activity {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .content-header {
+    flex-wrap: wrap;
+  }
+
+  .header-actions {
+    width: 100%;
+    order: 3;
+    margin-top: 1rem;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+}

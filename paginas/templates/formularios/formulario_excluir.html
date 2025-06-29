@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Despesa</title>
+<title>Excluir Registros</title>
 {% endblock %}
 
 
@@ -13,7 +13,7 @@
         <button class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
         </button>
-        <h1>Cadastro Despesa</h1>
+        <h1>{{titulo_excluir}}</h1>
         <div class="header-actions">
             <div class="search-box">
                 <input type="text" placeholder="Pesquisar...">
@@ -33,21 +33,23 @@
     {% endblock %}
 
     {% block graficos %}
-    <div class="receita-container">
-        <div class="receita-header">
+    <div class="modelo-container">
+        <div class="modelo-header">
             <div>
-                <p class="receita-subtitle">Registro de novas despesas agrícolas</p>
+                <h1 class="modelo-title">Exclusão de Registros</h1>
+                <p class="modelo-subtitle"><b>Tem certeza que deseja excluir o registro: </b></p><br>
+                <p>{{ object }}</p>
             </div>
         </div>
 
-        <form class="receita-form" action="" method="POST">
+        <form class="modelo-form" action="" method="POST">
             {% csrf_token %}
 
             {{ form.as_p}}
             <!-- Rodapé do Formulário -->
-            <div class="receita-actions">
-                <button type="button" class="btn btn-secondary">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Salvar</button>
+            <div class="modelo-actions">
+                <a class="btn btn-secondary" href="{% url 'pagina_index' %}">Cancelar</a>
+                <button type="submit" class="btn btn-danger">Excluir</button>
             </div>
 
 

@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'paginas.apps.PaginasConfig',
-    'receita.apps.ReceitaConfig',
-    'despesa.apps.DespesaConfig',
+    'perfis.apps.PerfisConfig',
+    'movimentacao.apps.MovimentacaoConfig',
+    'medicamento.apps.MedicamentoConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

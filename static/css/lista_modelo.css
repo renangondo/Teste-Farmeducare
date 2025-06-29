@@ -1,16 +1,22 @@
 /* Container principal */
-.receita-lista-container {
+.modelo-lista-container {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 25px;
   margin: 20px auto;
   max-width: 1200px;
+  width: calc(100% - 40px); /* Adicionado para melhor responsividade */
 }
 
 /* Cabeçalho da lista */
 .lista-header {
   margin-bottom: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Container da tabela */
@@ -19,45 +25,59 @@
   border-radius: 8px;
   border: 1px solid #e0e0e0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  -webkit-overflow-scrolling: touch; /* Melhora scroll em dispositivos móveis */
 }
 
 /* Estilos da tabela */
-.receita-table {
+.modelo-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 14px;
+  min-width: 600px; /* Evita que a tabela fique muito estreita */
 }
 
-.receita-table th {
+.modelo-table th {
   background-color: #4a8f29;
   color: white;
-  padding: 16px 20px;
-  text-align: left;
-  font-weight: 500;
+  padding: 12px 15px;
+  text-align: center;
+  font-weight: 600;
   border: none;
+  position: sticky;
+  top: 0;
+  font-size: 0.9em;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 200px;
 }
 
-.receita-table th:first-child {
+.modelo-table th:first-child {
   border-top-left-radius: 7px;
+  padding-left: 20px;
 }
 
-.receita-table th:last-child {
+.modelo-table th:last-child {
   border-top-right-radius: 7px;
+  padding-right: 20px;
 }
 
-.receita-table td {
-  padding: 16px 20px;
+.modelo-table td {
+  padding: 14px 15px;
   border-bottom: 1px solid #f0f0f0;
   vertical-align: middle;
   background-color: white;
+  font-size: 0.9em;
+  line-height: 1.4;
 }
 
-.receita-table tr:last-child td {
+.modelo-table tr:last-child td {
   border-bottom: none;
 }
 
-.receita-table tr:hover td {
+.modelo-table tr:hover td {
   background-color: #f8faf5;
 }
 
@@ -65,6 +85,7 @@
 .actions {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .btn-edit,
@@ -78,6 +99,7 @@
   gap: 6px;
   transition: all 0.2s ease;
   white-space: nowrap;
+  min-width: max-content; /* Garante que o texto não quebre */
 }
 
 .btn-edit {
@@ -116,6 +138,7 @@
   font-size: 14px;
   border: none;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -125,33 +148,82 @@
 }
 
 /* Mensagem de lista vazia */
-.receita-table tr td[colspan] {
+.modelo-table tr td[colspan] {
   text-align: center;
   padding: 30px;
   color: #666;
   font-size: 15px;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .receita-lista-container {
-    padding: 15px;
+/* Responsividade melhorada */
+@media (max-width: 992px) {
+  .modelo-lista-container {
+    padding: 20px;
   }
 
-  .receita-table th,
-  .receita-table td {
-    padding: 12px 15px;
-  }
-
-  .actions {
+  .lista-header {
     flex-direction: column;
-    gap: 8px;
+    align-items: flex-start;
   }
 
-  .btn-edit,
-  .btn-delete {
-    padding: 6px 10px;
-    font-size: 12px;
+  modelo-table th {
+    padding: 10px 12px;
+    font-size: 0.85em;
+  }
+
+  .modelo-table td {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modelo-lista-container {
+    padding: 15px;
+    margin: 15px auto;
+    width: calc(100% - 30px);
+  }
+
+  .modelo-table th {
+    padding: 8px 10px;
+    font-size: 0.8em;
+    max-width: 150px;
+  }
+
+  .modelo-table td {
+    padding: 10px;
+    font-size: 0.85em;
+  }
+
+  .modelo-table th:first-child {
+    padding-left: 15px;
+  }
+
+  .modelo-table th:last-child {
+    padding-right: 15px;
+  }
+
+  .btn-primary {
+    padding: 8px 14px;
+    font-size: 13px;
+    width: 100%;
     justify-content: center;
   }
+}
+
+@media (max-width: 576px) {
+  .modelo-table {
+    min-width: 100%;
+  }
+
+  .modelo-table th {
+    padding: 6px 8px;
+    font-size: 0.75em;
+    max-width: 120px;
+  }
+
+  .modelo-table td {
+    padding: 8px;
+    font-size: 0.8em;
+  }
+
 }

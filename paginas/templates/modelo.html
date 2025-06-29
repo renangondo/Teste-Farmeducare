@@ -13,8 +13,8 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsividade.css' %}">
-    <link rel="stylesheet" href="{% static 'css/receita.css' %}">
-    <link rel="stylesheet" href="{% static 'css/lista.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form_modelo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lista_modelo.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
@@ -35,19 +35,19 @@
         <nav class="sidebar-menu">
             <ul>
                 <li class="menu-item">
-                    <a href="{% url 'pagina_index' %}">
+                    <a href="">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{% url 'listar-receita' %}">
+                    <a href="{% url 'listar_movimentacao_receita' %}">
                         <i class="fas fa-hand-holding-usd"></i>
                         <span>Receitas</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{% url 'listar-despesa' %}">
+                    <a href="{% url 'listar_movimentacao_despesa' %}">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <span>Despesas</span>
                     </a>
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="estoque.html">
+                    <a href="{% url 'estoque_medicamento' %}">
                         <i class="fas fa-warehouse"></i>
                         <span>Estoque</span>
                     </a>
@@ -127,7 +127,7 @@
                     <p>R$ 85.420,00</p>
                     <small>+12% este mês</small>
                 </div>
-                <a href="receitas.html" class="card-link">Ver tudo</a>
+                <a href="" class="card-link">Ver tudo</a>
             </div>
 
             <div class="card card-medicamento">

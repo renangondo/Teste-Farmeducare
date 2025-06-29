@@ -2,10 +2,10 @@
 
 {% load static %}
 
-{% block titulo %}
-<title>Receita</title>
-{% endblock %}
 
+{% block titulo %}
+<title>{{title}}</title>
+{% endblock %}
 
 
 {% block conteudo %}
@@ -14,7 +14,7 @@
         <button class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
         </button>
-        <h1>Cadastro Receita</h1>
+        <h1>{{titulo}}</h1>
         <div class="header-actions">
             <div class="search-box">
                 <input type="text" placeholder="Pesquisar...">
@@ -34,21 +34,20 @@
     {% endblock %}
 
     {% block graficos %}
-    <div class="receita-container">
-        <div class="receita-header">
+    <div class="modelo-container">
+        <div class="modelo-header">
             <div>
-                <h1 class="receita-title">Cadastro de Receita</h1>
-                <p class="receita-subtitle">Registro de novas receitas agrícolas</p>
+                <p class="modelo-subtitle">{{subtitulo}}</p>
             </div>
         </div>
 
-        <form class="receita-form" action="" method="POST">
+        <form class="modelo-form" action="" method="POST">
             {% csrf_token %}
 
             {{ form.as_p}}
             <!-- Rodapé do Formulário -->
-            <div class="receita-actions">
-                <button type="button" class="btn btn-secondary">Cancelar</button>
+            <div class="modelo-actions">
+                <a class="btn btn-secondary" href="">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
 

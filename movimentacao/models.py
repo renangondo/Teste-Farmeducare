@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 from perfis.models import Fazenda, Parceiros
 
 # Criação das entidades Movimentação, Parcela, Categoria.

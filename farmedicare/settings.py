@@ -26,11 +26,10 @@ SECRET_KEY = 'django-insecure-o^g$5_jw(8rf(z9r=^t^58zs4o1azmin7+#%w(b3w+&%x^eu5$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.158', 'localhost', '127.0.0.1']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'usuarios.apps.UsuariosConfig',
     'paginas.apps.PaginasConfig',
     'perfis.apps.PerfisConfig',
     'movimentacao.apps.MovimentacaoConfig',
@@ -129,3 +129,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configurações de autenticação
+
+LOGIN_REDIRECT_URL = 'pagina_index'
+LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = 'login'

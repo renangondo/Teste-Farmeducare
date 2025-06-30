@@ -14,11 +14,13 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsividade.css' %}">
     <link rel="stylesheet" href="{% static 'css/form_modelo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form_login.css' %}">
     <link rel="stylesheet" href="{% static 'css/lista_modelo.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
+    {% if request.user.is_authenticated %}
 
     <!-- Sidebar/Menu Lateral -->
     {% block menu %}
@@ -35,7 +37,7 @@
         <nav class="sidebar-menu">
             <ul>
                 <li class="menu-item">
-                    <a href="">
+                    <a href="{% url 'pagina_index' %}">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
@@ -83,13 +85,17 @@
             <div class="user-info">
                 <img src="https://via.placeholder.com/40" alt="Usuário">
                 <div>
-                    <strong>Nome Administrador</strong>
+                    <strong>{{ request.user }}</strong>
                     <small>Administrador</small>
                 </div>
             </div>
-            <a href="logout.html" class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i>
-            </a>
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn"
+                    style="background: none; border: none; padding: 0; cursor: pointer;">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </form>
         </div>
     </aside>
     {% endblock %}
@@ -98,9 +104,6 @@
     {% block conteudo %}
     <main class="main-content">
         <header class="content-header">
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
             <h1>Dashboard</h1>
             <div class="header-actions">
                 <div class="search-box">
@@ -112,6 +115,9 @@
                     <span class="badge">3</span>
                 </button>
             </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </header>
         {% endblock %}
 
@@ -255,7 +261,16 @@
         </section>
     </main>
     {% endblock %}
-
+    {% else %}
+    <main class="main-content login-page">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Você precisa estar autenticado para acessar o sistema.</h2>
+                <a href="{% url 'login' %}" class="btn-primary">Fazer Login</a>
+            </div>
+        </div>
+    </main>
+    {% endif %}
     <script src="{% static 'js/mobile.js' %}"></script>
 </body>
 

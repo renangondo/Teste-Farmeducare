@@ -10,9 +10,6 @@
 {% block conteudo %}
 <main class="main-content">
     <header class="content-header">
-        <button class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </button>
         <h1>{{titulo}}</h1>
         <div class="header-actions">
             <div class="search-box">
@@ -24,8 +21,11 @@
                 <span class="badge">3</span>
             </button>
         </div>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
     </header>
-{% endblock %}
+    {% endblock %}
 
 
     {% block cards %}

@@ -6,6 +6,10 @@
 <title>Excluir Registros</title>
 {% endblock %}
 
+{% block css_especifico %}
+<!-- Carrega APENAS o CSS de Exclusão -->
+<link rel="stylesheet" href="{% static 'css/form_exclusao.css' %}?v=1.0" />
+{% endblock %}
 
 {% block conteudo %}
 <main class="main-content">
@@ -25,38 +29,42 @@
             </button>
         </div>
     </header>
-    {% endblock %}
+{% endblock %}
 
+{% block cards %}
+{% endblock %}
 
-    {% block cards %}
-
-    {% endblock %}
-
-    {% block graficos %}
-    <div class="modelo-container">
-        <div class="modelo-header">
-            <div>
-                <h1 class="modelo-title">Exclusão de Registros</h1>
-                <p class="modelo-subtitle"><b>Tem certeza que deseja excluir o registro: </b></p><br>
-                <p>{{ object }}</p>
-            </div>
-        </div>
-
-        <form class="modelo-form" action="" method="POST">
-            {% csrf_token %}
-
-            {{ form.as_p}}
-            <!-- Rodapé do Formulário -->
-            <div class="modelo-actions">
-                <a class="btn btn-secondary" href="{% url 'pagina_index' %}">Cancelar</a>
-                <button type="submit" class="btn btn-danger">Excluir</button>
-            </div>
-
-
-        </form>
+{% block graficos %}
+<div class="exclusao-container">
+    <div class="exclusao-header">
+        <h1 class="exclusao-title">⚠️ Exclusão de Registros</h1>
+        <p class="exclusao-subtitle"><b>Tem certeza que deseja excluir permanentemente o registro:</b></p>
     </div>
-    {% endblock %}
 
-    {% block ultimos_registros %}
+    <div class="exclusao-object">
+        {{ object }}
+    </div>
 
-    {% endblock %}
+    <div class="exclusao-warning">
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong>Atenção:</strong> Esta ação não pode ser desfeita. O registro será permanentemente removido do sistema.
+    </div>
+
+    <form class="modelo-form" action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="exclusao-actions">
+            <a class="btn-exclusao btn-exclusao-secondary" href="{% url 'pagina_index' %}">
+                <i class="fas fa-times"></i> Cancelar
+            </a>
+            <button type="submit" class="btn-exclusao btn-exclusao-danger">
+                <i class="fas fa-trash"></i> Confirmar Exclusão
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block ultimos_registros %}
+{% endblock %}

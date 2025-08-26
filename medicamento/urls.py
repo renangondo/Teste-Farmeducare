@@ -1,13 +1,10 @@
 from django.urls import path
 
-from medicamento.views import EntradaMedicamentoCreateView, EstoqueView, MedicamentoListView, SaidaMedicamentoCreateView
+from medicamento.views import EntradaMedicamentoCreateView, EntradaMedicamentoListView, EntradaMedicamentoDeleteView, EntradaMedicamentoUpdateView
 
 urlpatterns = [
-
-    path('estoque/', EstoqueView.as_view(), name='estoque_medicamento'),
-
     path('entrada/', EntradaMedicamentoCreateView.as_view(), name='entrada_medicamento_create'),
-    path('saida/', SaidaMedicamentoCreateView.as_view(), name='saida_medicamento_create'),
-
-    path('lista/', MedicamentoListView.as_view(), name='medicamento_list'),
+    path('estoque/', EntradaMedicamentoListView.as_view(), name='medicamento_estoque'),
+    path('editar/<int:pk>/', EntradaMedicamentoUpdateView.as_view(), name='editar_movimentacao'),
+    path('excluir/<int:pk>/', EntradaMedicamentoDeleteView.as_view(), name='excluir_movimentacao'),
 ]

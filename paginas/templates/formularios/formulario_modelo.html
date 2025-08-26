@@ -7,6 +7,10 @@
 <title>{{title}}</title>
 {% endblock %}
 
+{% block css_especifico %}
+<!-- Carrega APENAS o CSS do formulário -->
+<link rel="stylesheet" href="{% static 'css/form_modelo.css' %}?v=1.0" />
+{% endblock %} 
 
 {% block conteudo %}
 <main class="main-content">

@@ -10,7 +10,7 @@ class Parceiros(models.Model):
     email = models.EmailField(max_length=254, blank=True, null=True, verbose_name='E-mail')
     
     def __str__(self):
-        return f"{self.nome}  - {self.telefone} "
+        return f"{self.nome}"
 
     class Meta:
         verbose_name = 'Parceiro'

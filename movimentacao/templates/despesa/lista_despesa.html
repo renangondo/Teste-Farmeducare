@@ -1,106 +1,120 @@
-{% extends 'modelo.html' %}
-
-{% load static %}
-
-{% block titulo %}
+{% extends 'modelo.html' %} {% load static %} {% block titulo %}
 <title>{{title}}</title>
-{% endblock %}
-
-
-{% block conteudo %}
+{% endblock %} {% block conteudo %}
 <main class="main-content">
-    <header class="content-header">
-        <button class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </button>
-        <h1>{{titulo}}</h1>
-        <div class="header-actions">
-            <div class="search-box">
-                <input type="text" placeholder="Pesquisar...">
-                <i class="fas fa-search"></i>
-            </div>
-            <button class="btn btn-notification">
-                <i class="fas fa-bell"></i>
-                <span class="badge">3</span>
-            </button>
-        </div>
-    </header>
-    {% endblock %}
-
-
-    {% block cards %}
-
-    {% endblock %}
-
-    {% block graficos %}
-    <div class="modelo-lista-container">
-        <div class="lista-header">
-            <div class="search-and-actions">
-                <a href="{% url 'cadastrar_movimentacao' %}" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> {{btn_cadastrar}}
-                </a>
-            </div>
-        </div>
-        <br>
-
-        <div class="table-container">
-            <table class="modelo-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Tipo</th>
-                        <th>Parceiro</th>
-                        <th>Valor Total</th>
-                        <th>Parcelas</th>
-                        <th>Imposto de Renda</th>
-                        <th>Descrição</th>
-                        <th>Data para Pagamento</th>
-                        <th>Fazenda</th>
-                        <th>Cadastrada Por</th>
-                        <th>Cadastrado Em</th>
-                        <th>Opções</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for despesa in object_list %}
-                    <tr>
-                        <td>{{ despesa.pk }}</td>
-                        <td>{{ despesa.tipo }}</td>
-                        <td>{{ despesa.parceiros }}</td>
-                        <td>R$ {{ despesa.valor_total|floatformat:2 }}</td>
-                        <td>{{ despesa.parcelas }}</td>
-                        <td>
-                            {% if despesa.imposto_renda %}
-                            Sim
-                            {% else %}
-                            Não
-                            {% endif %} </td>
-                        <td>{{ despesa.descricao }}</td>
-                        <td>{{ despesa.data|date:"d/m/Y" }}</td>
-                        <td>{{ despesa.fazenda }}</td>
-                        <td>{{ despesa.cadastrada_por }}</td>
-                        <td>{{ despesa.cadastrado_em|date:"d/m/Y" }}</td>
-                        <td class="actions">
-                            <a href="{% url 'editar_movimentacao' despesa.pk %}" class="btn-edit">
-                                <i class="fas fa-edit"></i> Editar
-                            </a>
-                            <a href="{% url 'excluir_movimentacao' despesa.pk %}" class="btn-delete"
-                                onclick="return confirm('Tem certeza?')">
-                                <i class="fas fa-trash"></i> Excluir
-                            </a>
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="8">{{registros}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+  <header class="content-header">
+    <h1>{{titulo}}</h1>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="text" placeholder="Pesquisar..." />
+        <i class="fas fa-search"></i>
+      </div>
+      <button class="btn btn-notification">
+        <i class="fas fa-bell"></i>
+        <span class="badge">3</span>
+      </button>
     </div>
-    {% endblock %}
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+  {% endblock %} {% block cards %} {% endblock %} {% block graficos %}
+  <div class="modelo-lista-container">
+    <div class="lista-header">
+      <div class="search-and-actions">
+        <a href="{% url 'cadastrar_movimentacao' %}" class="btn btn-primary">
+          <i class="fas fa-plus"></i> {{btn_cadastrar}}
+        </a>
+      </div>
+    </div>
+    <br />
 
-    {% block ultimos_registros %}
+    <div class="table-container">
+      <table class="modelo-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Parceiro</th>
+            <th>Valor Total</th>
+            <th>Parcelas</th>
+            <th>Imposto de Renda</th>
+            <th>Descrição</th>
+            <th>Data para Pagamento</th>
+            <th>Fazenda</th>
+            <th>Cadastrada Por</th>
+            <th>Cadastrado Em</th>
+            <th>Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for despesa in object_list %}
+          <tr>
+            <td>{{ despesa.pk }}</td>
+            <td>{{ despesa.tipo }}</td>
+            <td>{{ despesa.parceiros }}</td>
+            <td>R$ {{ despesa.valor_total|floatformat:2 }}</td>
+            <td>{{ despesa.parcelas }}</td>
+            <td>
+              {% if despesa.imposto_renda %} Sim {% else %} Não {% endif %}
+            </td>
+            <td>{{ despesa.descricao }}</td>
+            <td>{{ despesa.data|date:"d/m/Y" }}</td>
+            <td>{{ despesa.fazenda }}</td>
+            <td>{{ despesa.cadastrada_por }}</td>
+            <td>{{ despesa.cadastrado_em|date:"d/m/Y" }}</td>
+            <td class="actions">
+              <a
+                href="{% url 'editar_movimentacao' despesa.pk %}"
+                class="btn-edit"
+              >
+                <i class="fas fa-edit"></i> Editar
+              </a>
+              <a
+                href="{% url 'excluir_movimentacao' despesa.pk %}"
+                class="btn-delete"
+              >
+                <i class="fas fa-trash"></i> Excluir
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="12">{{registros}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
-    {% endblock %}
+    <!-- TOTAIS FORA DA TABELA - DESPESAS -->
+    {% if object_list %}
+    <div
+      class="totais-container"
+      style="
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f8e7e7;
+        border-radius: 5px;
+        border: 1px solid #e6c3c3;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div style="font-weight: bold; font-size: 16px; color: #c62828">
+          TOTAL DE DESPESAS:
+        </div>
+        <div style="font-weight: bold; font-size: 18px; color: #c62828">
+          R$ {{ total_despesas|floatformat:2 }}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  {% endblock %} {% block ultimos_registros %} {% endblock %}
+</main>

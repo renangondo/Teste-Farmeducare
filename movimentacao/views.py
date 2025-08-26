@@ -241,3 +241,4 @@ class MovimentacaoDespesaListView(ListView):
         "registros": "Nenhuma despesa encontrada.",
         "btn_cadastrar": "Nova Despesa",
     }
+

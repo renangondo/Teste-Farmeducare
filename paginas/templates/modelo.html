@@ -20,6 +20,7 @@
     <!-- Bloco para CSS específico de cada página -->
     {% block css_especifico %}
     <!-- CSS padrão que carrega em todas as páginas -->
+    <link rel="stylesheet" href="{% static 'css/admin_section.css' %}" />
     <link rel="stylesheet" href="{% static 'css/form_modelo.css' %}" />
     <link rel="stylesheet" href="{% static 'css/form_login.css' %}" />
     <link rel="stylesheet" href="{% static 'css/lista_modelo.css' %}" />
@@ -111,6 +112,13 @@
             <input type="text" placeholder="Pesquisar..." />
             <i class="fas fa-search"></i>
           </div>
+          {% block admin %}
+          <!-- Botão de acesso à área admin (apenas para superusers) -->
+          {% if request.user.is_superuser %}
+          <button class="admin-toggle">
+            <i class="fas fa-cogs"></i> Área Admin
+          </button>
+          {% endif %} {% endblock %}
           <button class="btn btn-notification">
             <i class="fas fa-bell"></i>
             <span class="badge">3</span>
@@ -120,7 +128,59 @@
           <i class="fas fa-bars"></i>
         </button>
       </header>
-      {% endblock %}
+      {% endblock %} 
+      
+      {% block conteudo_admin %}
+      <!-- Seção de Administração (apenas para superusers) -->
+      {% if request.user.is_superuser %}
+      <section class="admin-section">
+        <h2><i class="fas fa-user-shield"></i> Área de Administração</h2>
+        <div class="admin-cards">
+          <div class="admin-card">
+            <i class="fas fa-user-shield"></i>
+            <h3>Painel Admin</h3>
+            <p>Painel completo do Django</p>
+            <a href="/admin/" target="_blank">Acessar</a>
+          </div>
+
+          <div class="admin-card">
+            <i class="fas fa-pills"></i>
+            <h3>Medicamentos</h3>
+            <p>Gerenciar medicamentos</p>
+            <a href="{% url 'cadastro_medicamento' %}">Gerenciar</a>
+          </div>
+
+          <div class="admin-card">
+            <i class="fas fa-tags"></i>
+            <h3>Categorias</h3>
+            <p>Gerenciar categorias</p>
+            <a href="#">Gerenciar</a>
+          </div>
+
+          <div class="admin-card">
+            <i class="fas fa-money-bill-wave"></i>
+            <h3>Parcelas</h3>
+            <p>Gerenciar parcelas</p>
+            <a href="#">Gerenciar</a>
+          </div>
+
+          <div class="admin-card">
+            <i class="fas fa-users"></i>
+            <h3>Usuários</h3>
+            <p>Gerenciar usuários</p>
+            <a href="#">Gerenciar</a>
+          </div>
+
+          <div class="admin-card">
+            <i class="fas fa-tractor"></i>
+            <h3>Fazendas</h3>
+            <p>Gerenciar fazendas</p>
+            <a href="#">Gerenciar</a>
+          </div>
+        </div>
+      </section>
+      {% endif %} 
+      {%endblock%}
 
       <!-- Cards Resumo -->
       {% block cards %}
@@ -277,6 +337,8 @@
       </div>
     </main>
     {% endif %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/mobile.js' %}"></script>
+    <script src="{% static 'js/admin_menu.js' %}"></script>
   </body>
 </html>

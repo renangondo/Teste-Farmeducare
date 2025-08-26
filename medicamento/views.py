@@ -50,9 +50,7 @@ class EntradaMedicamentoDeleteView(DeleteView):
     template_name = 'formularios/formulario_excluir.html'
     success_url = reverse_lazy("medicamento_estoque")
     extra_context = {
-        "title": "Confirmação de Exclusão de Entrada de Medicamentos",
-        "titulo": "Confirmação de Exclusão de Entrada de Medicamentos",
-        "subtitulo": "Tem certeza que deseja excluir esta entrada de medicamento?",
+        "titulo": "Confirmação de Exclusão",
     }
 
 

@@ -9,6 +9,7 @@
         <input type="text" placeholder="Pesquisar..." />
         <i class="fas fa-search"></i>
       </div>
+      {% block admin %} {%endblock%}
       <button class="btn btn-notification">
         <i class="fas fa-bell"></i>
         <span class="badge">3</span>
@@ -18,6 +19,10 @@
       <i class="fas fa-bars"></i>
     </button>
   </header>
+
+  {% block conteudo_admin %}
+  {% endblock %}
+
   {% endblock %} {% block cards %} {% endblock %} {% block graficos %}
   <div class="modelo-lista-container">
     <div class="lista-header">

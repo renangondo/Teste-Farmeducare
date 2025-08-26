@@ -14,23 +14,25 @@
 
 {% block conteudo %}
 <main class="main-content">
-    <header class="content-header">
-        <button class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </button>
-        <h1>{{titulo}}</h1>
-        <div class="header-actions">
-            <div class="search-box">
-                <input type="text" placeholder="Pesquisar...">
-                <i class="fas fa-search"></i>
-            </div>
-            <button class="btn btn-notification">
-                <i class="fas fa-bell"></i>
-                <span class="badge">3</span>
-            </button>
-        </div>
-    </header>
-    {% endblock %}
+  <header class="content-header">
+    <h1>{{titulo}}</h1>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="text" placeholder="Pesquisar..." />
+        <i class="fas fa-search"></i>
+      </div>
+      {% block admin %} {%endblock%}
+      <button class="btn btn-notification">
+        <i class="fas fa-bell"></i>
+        <span class="badge">3</span>
+      </button>
+    </div>
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  {% block conteudo_admin %} {% endblock %} {% endblock %}
 
 
     {% block cards %}

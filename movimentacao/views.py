@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 
 
@@ -28,10 +29,17 @@ class MovimentacaoCreateView(CreateView):
     ]
     template_name = "formularios/formulario_modelo.html"
     success_url = reverse_lazy("pagina_index")
+
+    def form_valid(self, form):
+        # Define o usuário logado como cadastrado_por
+        form.instance.cadastrada_por = self.request.user
+        response = super().form_valid(form)
+        return response
+
     extra_context = {
         "title": "Cadastro de Movimentações",
         "titulo": "Cadastro de Movimentações",
-        "subtitulo": "Movimentações são usadas para registrar entradas e saídas de dinheiro na fazenda.",
+        "subtitulo": "Movimentações são usadas para registrar entradas e saídas de dinheiro na fazenda. As parcelas serão geradas automaticamente.",
     }
 
 
@@ -96,22 +104,24 @@ class MovimentacaoUpdateView(UpdateView):
 ############ Update Parcela ############
 class ParcelaUpdateView(UpdateView):
     model = Parcela
-    fields = [
-        "movimentacao",
-        "ordem_parcela",
-        "valor_parcela",
-        "data_vencimento",
-        "valor_pago",
-        "status_pagamento",
-        "data_quitacao",
-    ]
+    fields = ["valor_pago", "status_pagamento", "data_quitacao"]
     template_name = "formularios/formulario_modelo.html"
-    success_url = reverse_lazy("pagina_index")
 
-    extra_context = {
-        "title": "Atualização de Parcelas",
-        "titulo": "Atualização de Parcelas",
-    }
+    def get_success_url(self):
+        return reverse_lazy("listar_parcelas")
+
+    def form_valid(self, form):
+        # Se o status for alterado para "Pago" e data_quitacao estiver vazia, preenche com hoje
+        if form.instance.status_pagamento == "Pago" and not form.instance.data_quitacao:
+            form.instance.data_quitacao = datetime.now().date()
+
+        # Se o valor pago for igual ao valor da parcela, marca como pago
+        if form.instance.valor_pago >= form.instance.valor_parcela:
+            form.instance.status_pagamento = "Pago"
+            if not form.instance.data_quitacao:
+                form.instance.data_quitacao = datetime.now().date()
+
+        return super().form_valid(form)
 
 
 ############ Update Categoria ############
@@ -143,7 +153,7 @@ class MovimentacaoDeleteView(DeleteView):
 class ParcelaDeleteView(DeleteView):
     model = Parcela
     template_name = "formularios/formulario_excluir.html"
-    success_url = reverse_lazy("pagina_index")
+    success_url = reverse_lazy("listar_parcelas")
 
     extra_context = {
         "title": "Exclusão de Parcelas",
@@ -242,3 +252,20 @@ class MovimentacaoDespesaListView(ListView):
         "btn_cadastrar": "Nova Despesa",
     }
 
+
+############ List ParcelasMovimentacao ###########
+class ParcelasListView(ListView):
+    model = Parcela
+    template_name = "parcela/lista_parcelas.html"
+    context_object_name = "parcelas"
+
+    def get_queryset(self):
+        return Parcela.objects.all().order_by("-data_vencimento")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Todas as Parcelas"
+        context["titulo"] = "Todas as Parcelas do Sistema"
+        context["registros"] = "Nenhuma parcela encontrada."
+        context["btn_cadastrar"] = "Nova Parcela"
+        return context

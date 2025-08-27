@@ -1,0 +1,72 @@
+{% extends 'modelo.html' %}
+{% load static %}
+{% block titulo %}<title>{{ title }}</title>{% endblock %}
+{% block conteudo %}
+  <main class="main-content">
+    <header class="content-header">
+      <h1>{{ titulo }}</h1>
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" placeholder="Pesquisar..." />
+          <i class="fas fa-search"></i>
+        </div>
+        {% block admin %}{% endblock %}
+        <button class="btn btn-notification">
+          <i class="fas fa-bell"></i>
+          <span class="badge">3</span>
+        </button>
+      </div>
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </header>
+    {% block conteudo_admin %}
+    {% endblock %}
+  {% endblock %}
+  {% block cards %}{% endblock %}
+  {% block graficos %}
+    <div class="modelo-lista-container">
+      <br />
+      <div class="table-container">
+        <table class="modelo-table">
+          <thead>
+            <tr>
+              <th>Parcela</th>
+              <th>Valor</th>
+              <th>Vencimento</th>
+              <th>Valor Pago</th>
+              <th>Status</th>
+              <th>Quitação</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for parcela in object_list %}
+              <tr>
+                <td>{{ parcela.ordem_parcela }}/{{ movimentacao.parcelas }}</td>
+                <td>R$ {{ parcela.valor_parcela }}</td>
+                <td>{{ parcela.data_vencimento|date:"d/m/Y" }}</td>
+                <td>R$ {{ parcela.valor_pago }}</td>
+                <td>{{ parcela.status_pagamento }}</td>
+                <td>{{ parcela.data_quitacao|date:"d/m/Y"|default:"-" }}</td>
+                <td class="actions">
+                  <a href="{% url 'editar_parcela' parcela.id %}" class="btn-edit">
+                    <i class="fas fa-edit"></i> Editar
+                  </a>
+                  <a href="{% url 'excluir_parcela' parcela.id %}" class="btn-delete">
+                    <i class="fas fa-trash"></i> Excluir
+                  </a>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="7">{{ registros }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% endblock %}
+  {% block ultimos_registros %}{% endblock %}
+</main>

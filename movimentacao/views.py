@@ -1,7 +1,6 @@
 import datetime
 from django.shortcuts import render
-
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView
 from .models import Categoria, Movimentacao, Parcela
@@ -13,7 +12,7 @@ from .models import Categoria, Movimentacao, Parcela
 
 
 ############ Create Movimentacao ############
-class MovimentacaoCreateView(CreateView):
+class MovimentacaoCreateView(LoginRequiredMixin, CreateView):
     model = Movimentacao
     fields = [
         "tipo",
@@ -29,6 +28,7 @@ class MovimentacaoCreateView(CreateView):
     ]
     template_name = "formularios/formulario_modelo.html"
     success_url = reverse_lazy("pagina_index")
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     def form_valid(self, form):
         # Define o usuário logado como cadastrado_por
@@ -44,7 +44,7 @@ class MovimentacaoCreateView(CreateView):
 
 
 ############ Create Parcela ############
-class ParcelaCreateView(CreateView):
+class ParcelaCreateView(LoginRequiredMixin, CreateView):
     model = Parcela
     fields = [
         "movimentacao",
@@ -57,6 +57,7 @@ class ParcelaCreateView(CreateView):
     ]
     template_name = "formularios/formulario_modelo.html"
     success_url = reverse_lazy("pagina_index")
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     extra_context = {
         "title": "Cadastro de Parcelas",
@@ -66,11 +67,12 @@ class ParcelaCreateView(CreateView):
 
 
 ############ Create Categoria ############
-class CategoriaCreateView(CreateView):
+class CategoriaCreateView(LoginRequiredMixin, CreateView):
     model = Categoria
     fields = ["nome", "tipo"]
     template_name = "formularios/formulario_modelo.html"
     success_url = reverse_lazy("pagina_index")
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     extra_context = {
         "title": "Cadastro de Categorias",
@@ -80,7 +82,7 @@ class CategoriaCreateView(CreateView):
 
 
 ############ Update Movimentacao ############
-class MovimentacaoUpdateView(UpdateView):
+class MovimentacaoUpdateView(LoginRequiredMixin, UpdateView):
     model = Movimentacao
     fields = [
         "tipo",
@@ -95,6 +97,8 @@ class MovimentacaoUpdateView(UpdateView):
     ]
     template_name = "formularios/formulario_modelo.html"
     success_url = reverse_lazy("pagina_index")
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
+    
     extra_context = {
         "title": "Atualização de Movimentações",
         "titulo": "Atualização de Movimentações",
@@ -102,10 +106,11 @@ class MovimentacaoUpdateView(UpdateView):
 
 
 ############ Update Parcela ############
-class ParcelaUpdateView(UpdateView):
+class ParcelaUpdateView(LoginRequiredMixin, UpdateView):
     model = Parcela
     fields = ["valor_pago", "status_pagamento", "data_quitacao"]
     template_name = "formularios/formulario_modelo.html"
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     def get_success_url(self):
         return reverse_lazy("listar_parcelas")
@@ -125,11 +130,12 @@ class ParcelaUpdateView(UpdateView):
 
 
 ############ Update Categoria ############
-class CategoriaUpdateView(UpdateView):
+class CategoriaUpdateView(LoginRequiredMixin, UpdateView):
     model = Categoria
     fields = ["nome", "tipo"]
     template_name = "formularios/formulario_modelo.html"
     success_url = reverse_lazy("pagina_index")
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     extra_context = {
         "title": "Atualização de Categorias",
@@ -138,10 +144,11 @@ class CategoriaUpdateView(UpdateView):
 
 
 ############ Delete Movimentacao ############
-class MovimentacaoDeleteView(DeleteView):
+class MovimentacaoDeleteView(LoginRequiredMixin, DeleteView):
     model = Movimentacao
     template_name = "formularios/formulario_excluir.html"
     success_url = reverse_lazy("pagina_index")
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     extra_context = {
         "title": "Exclusão de Movimentações",
@@ -150,10 +157,11 @@ class MovimentacaoDeleteView(DeleteView):
 
 
 ############ Delete Parcela ############
-class ParcelaDeleteView(DeleteView):
+class ParcelaDeleteView(LoginRequiredMixin, DeleteView):
     model = Parcela
     template_name = "formularios/formulario_excluir.html"
     success_url = reverse_lazy("listar_parcelas")
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     extra_context = {
         "title": "Exclusão de Parcelas",
@@ -162,10 +170,11 @@ class ParcelaDeleteView(DeleteView):
 
 
 ############ Delete Categoria ############
-class CategoriaDeleteView(DeleteView):
+class CategoriaDeleteView(LoginRequiredMixin, DeleteView):
     model = Categoria
     template_name = "formularios/formulario_excluir.html"
     success_url = reverse_lazy("pagina_index")
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     extra_context = {
         "title": "Exclusão de Categorias",
@@ -174,9 +183,10 @@ class CategoriaDeleteView(DeleteView):
 
 
 ############ List Movimentação Genérica ############
-class MovimentacaoListView(ListView):
+class MovimentacaoListView(LoginRequiredMixin, ListView):
     model = Movimentacao
     template_name = "movimentacao/lista_movimentacoes.html"
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     def get_queryset(self):
         return Movimentacao.objects.all().order_by("-data")
@@ -196,9 +206,10 @@ class MovimentacaoListView(ListView):
 
 
 ############ List Movimentação Receita ############
-class MovimentacaoReceitaListView(ListView):
+class MovimentacaoReceitaListView(LoginRequiredMixin, ListView):
     model = Movimentacao
     template_name = "receita/lista_receita.html"
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     def get_queryset(self):
         return Movimentacao.objects.filter(tipo="receita").order_by("-data")
@@ -225,9 +236,10 @@ class MovimentacaoReceitaListView(ListView):
 
 
 ############ List Movimentação Despesa ############
-class MovimentacaoDespesaListView(ListView):
+class MovimentacaoDespesaListView(LoginRequiredMixin, ListView):
     model = Movimentacao
     template_name = "despesa/lista_despesa.html"
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     def get_queryset(self):
         return Movimentacao.objects.filter(tipo="despesa").order_by("-data")
@@ -254,10 +266,11 @@ class MovimentacaoDespesaListView(ListView):
 
 
 ############ List ParcelasMovimentacao ###########
-class ParcelasListView(ListView):
+class ParcelasListView(LoginRequiredMixin, ListView):
     model = Parcela
     template_name = "parcela/lista_parcelas.html"
     context_object_name = "parcelas"
+    login_url = reverse_lazy('login')  # Altere para o nome da sua URL de login
 
     def get_queryset(self):
         return Parcela.objects.all().order_by("-data_vencimento")

@@ -1,11 +1,12 @@
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from medicamento.models import EntradaMedicamento, Medicamento
 
 
 ############ Create Medicamento ############
-class MedicamentoCreateView(CreateView):
+class MedicamentoCreateView(LoginRequiredMixin, CreateView):
     model = Medicamento
     fields = ["nome", "fazenda"]
     template_name = "formularios/formulario_modelo.html"
@@ -18,7 +19,7 @@ class MedicamentoCreateView(CreateView):
 
 
 ############ Create EntradaMedicamento ############
-class EntradaMedicamentoCreateView(CreateView):
+class EntradaMedicamentoCreateView(LoginRequiredMixin, CreateView):
     model = EntradaMedicamento
     fields = ["medicamento", "valor_medicamento", "quantidade", "validade", "cadastrada_por", "observacao"]
     template_name = "formularios/formulario_modelo.html"
@@ -32,7 +33,7 @@ class EntradaMedicamentoCreateView(CreateView):
 
 
 ############ Update EntradaMedicamento ############
-class EntradaMedicamentoUpdateView(UpdateView):
+class EntradaMedicamentoUpdateView(LoginRequiredMixin, UpdateView):
     model = EntradaMedicamento
     fields = ["medicamento", "valor_medicamento", "quantidade", "validade", "cadastrada_por", "observacao"]
     template_name = "formularios/formulario_modelo.html"
@@ -45,7 +46,7 @@ class EntradaMedicamentoUpdateView(UpdateView):
 
 
 ############ Delete EntradaMedicamento ############
-class EntradaMedicamentoDeleteView(DeleteView):
+class EntradaMedicamentoDeleteView(LoginRequiredMixin, DeleteView):
     model = EntradaMedicamento
     template_name = 'formularios/formulario_excluir.html'
     success_url = reverse_lazy("medicamento_estoque")
@@ -55,7 +56,7 @@ class EntradaMedicamentoDeleteView(DeleteView):
 
 
 ############ List EntradaMedicamento ############
-class EntradaMedicamentoListView(ListView):
+class EntradaMedicamentoListView(LoginRequiredMixin, ListView):
     model = EntradaMedicamento
     template_name = "medicamento_estoque.html"
     extra_context = {

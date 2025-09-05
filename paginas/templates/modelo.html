@@ -1,19 +1,16 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     {% block titulo %}
     <title>Modelo</title>
     {% endblock %}
 
-    <!-- CSS principal primeiro -->
+    <!-- CSS principal -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/responsividade.css' %}" />
 
@@ -26,11 +23,8 @@
     <link rel="stylesheet" href="{% static 'css/lista_modelo.css' %}" />
     {% endblock %}
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
 
   <body>
     {% if request.user.is_authenticated %}
@@ -224,16 +218,12 @@
       <section class="charts-section">
         <div class="chart-container">
           <h3>Receitas vs Despesas (Últimos 6 meses)</h3>
-          <div class="chart-placeholder">
-            [Gráfico de Linhas - Receitas x Despesas]
-          </div>
+          <canvas id="lineChart"></canvas>
         </div>
 
         <div class="chart-container">
           <h3>Distribuição de Despesas</h3>
-          <div class="chart-placeholder">
-            [Gráfico de Pizza - Categorias de Despesas]
-          </div>
+          <canvas id="pieChart"></canvas>
         </div>
       </section>
       {% endblock %}
@@ -336,5 +326,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/mobile.js' %}"></script>
     <script src="{% static 'js/admin_menu.js' %}"></script>
+    <!-- No final do seu template, antes de fechar o body -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+    window.graficoData = {{ grafico_data_json|safe }};
+    </script>
+    <script src="{% static 'js/grafico.js' %}"></script>
   </body>
 </html>

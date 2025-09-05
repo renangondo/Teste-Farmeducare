@@ -8,29 +8,51 @@
 
 {% block cards %}
 <section class="summary-cards">
+    {% if total_receitas %}
     <div class="card card-receita">
         <div class="card-icon">
             <i class="fas fa-hand-holding-usd"></i>
         </div>
+       
         <div class="card-info">
             <h3>Receitas</h3>
-            <p>R$ 0</p>
+            <p>R$ {{ total_receitas|floatformat:2 }}</p>
             <small>+0% este mês</small>
         </div>
         <a href="" class="card-link">Ver tudo</a>
     </div>
+    {% endif %}
 
+
+    {% if total_despesas %}
+    <div class="card card-despesa">
+        <div class="card-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+        </div>
+
+        <div class="card-info">
+            <h3>Despesas</h3>
+            <p>R$ {{ total_despesas|floatformat:2 }}</p>
+            <small>+0% este mês</small>
+        </div>
+        <a href="" class="card-link">Ver tudo</a>
+    </div>
+    {% endif %}
+
+    {% if total_quantidade %}
     <div class="card card-medicamento">
         <div class="card-icon">
             <i class="fas fa-pills"></i>
         </div>
         <div class="card-info">
             <h3>Medicamentos</h3>
-            <p>0 itens</p>
+            <p>{{total_quantidade}}</p>
             <small>0 próximos de vencer</small>
         </div>
         <a href="medicamentos.html" class="card-link">Ver tudo</a>
     </div>
+    {% endif %}
+
 
     <div class="card card-alerta">
         <div class="card-icon">

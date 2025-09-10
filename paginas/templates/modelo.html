@@ -11,7 +11,7 @@
     {% endblock %}
 
     <!-- CSS principal -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'css/responsividade.css' %}" />
 
     <!-- Bloco para CSS específico de cada página -->
@@ -324,9 +324,12 @@
     </main>
     {% endif %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Script principal primeiro -->
     <script src="{% static 'js/mobile.js' %}"></script>
+    
+    <!-- Depois os outros scripts -->
     <script src="{% static 'js/admin_menu.js' %}"></script>
-    <!-- No final do seu template, antes de fechar o body -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script>

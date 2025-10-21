@@ -1,13 +1,11 @@
-from django.test import TestCase
+from django.test import TestCase 
 from django.contrib.auth.models import User
 from .models import Fazenda, Parceiros
 
 
 class FazendaModelTest(TestCase):
-    """Teste para o modelo Fazenda"""
     
     def test_criar_fazenda(self):
-        """Testa a criação de uma fazenda"""
         fazenda = Fazenda.objects.create(
             nome='Fazenda São João',
             cidade='Ribeirão Preto',
@@ -20,10 +18,9 @@ class FazendaModelTest(TestCase):
 
 
 class ParceirosModelTest(TestCase):
-    """Teste para o modelo Parceiros"""
     
     def test_criar_parceiro(self):
-        """Testa a criação de um parceiro"""
+
         parceiro = Parceiros.objects.create(
             nome='Agropecuária Silva',
             telefone='(16) 99999-9999',
